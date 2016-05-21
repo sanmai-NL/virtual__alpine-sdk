@@ -1,0 +1,64 @@
+= Image: Alpine Linux SDK
+:caution-caption: ☡ CAUTION
+:important-caption: ❗ IMPORTANT
+:note-caption: 🛈 NOTE
+:sectanchors:
+:sectlinks:
+:sectnumlevels: 6
+:sectnums:
+:source-highlighter: pygments
+:tip-caption: 💡 TIP
+:toc-placement: preamble
+:toc:
+:warning-caption: ⚠ WARNING
+
+You can use this project to build a Docker container image. Using a container based on this image, you can develop http://www.alpinelinux.org/[Alpine Linux] https://wiki.alpinelinux.org/wiki/Developer_Documentation#Building_from_source_and_creating_packages[Aports packages] easily from your existing, non-Alpine Linux workstation.
+
+Please issue all of the following shell statements from within the root directory of this repository.
+
+== Dependencies
+
+[options="header"]
+|===
+
+| Conditions | Type | Name (URL) | Version constraint
+
+| by default
+| software
+| https://www.docker.com/[Docker]
+| >=1.11
+
+| by default
+| software
+| https://packer.io[Packer]
+| >=0.10
+
+| by default
+| software
+| https://www.sudo.ws/[Sudo]
+| >=1.8
+
+|===
+
+== To build the image
+
+=== To configure build
+
+Take a look at link:.env[`.env`].
+It contains shell variables relevant to the build.
+
+. `MATCHING_UID`: the user ID on your Docker host of your OS user account, as a developer.
+Find it out by e.g. issuing `id`.
+It needs to match `alpine-developer`’s user ID, the user to use inside the container.
+. `REGISTRY`: the Docker registry that the built image will be tagged as belonging to.
+The default is normally okay.
+
+NOTE: In the following, substitute `fish` with the name of a shell executable, e.g. `bash`.
+
+=== To run the build
+
+[source,sh]
+----
+sh -a -c -x -- '. ".env" && fish -i'
+sudo -E packer build 'recipes/Docker.json'
+----

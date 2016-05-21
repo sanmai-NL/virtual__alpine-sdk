@@ -1,0 +1,44 @@
+{
+    "variables": {
+        "REGISTRY": "{{env `REGISTRY`}}",
+        "MATCHING_UID": "{{env `MATCHING_UID`}}"
+    },
+    "builders": [
+        {
+            "commit": true,
+            "image":  "alpine:3.3",
+            "name": "alpine-sdk",
+            "pull": false,
+            "run_command": [
+                "--detach=true",
+                "--interactive=true",
+                "--net=host",
+                "--tmpfs=/run:rw,nosuid",
+                "--tmpfs=/tmp:rw,mode=1777",
+                "--tty=true",
+                "{{.Image}}",
+                "/bin/sh"
+            ],
+            "type": "docker"
+        }
+    ],
+    "provisioners": [
+        {
+            "environment_vars": [
+                "MATCHING_UID={{user `MATCHING_UID`}}"
+            ],
+            "remote_path": "/provision.sh",
+            "scripts": [
+                "{{template_dir}}/../provision.sh"
+            ],
+            "type": "shell"
+        }
+    ],
+    "post-processors": [
+        {
+            "repository": "{{user `REGISTRY`}}/alpine-sdk",
+            "tag": "0.1.0",
+            "type": "docker-tag"
+        }
+    ]
+}
