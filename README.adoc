@@ -1,4 +1,4 @@
-= Image: Alpine Linux SDK
+= Image: Alpine Linux SDK (`alpine-sdk`)
 :caution-caption: ☡ CAUTION
 :important-caption: ❗ IMPORTANT
 :note-caption: 🛈 NOTE
@@ -25,7 +25,7 @@ Please issue all of the following shell statements from within the root director
 
 | by default
 | software
-| https://www.docker.com/[Docker]
+| https://www.docker.com/[Docker Engine]
 | >=1.11
 
 | by default
