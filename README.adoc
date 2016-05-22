@@ -12,7 +12,7 @@
 :toc:
 :warning-caption: ⚠ WARNING
 
-You can use this project to build a Docker container image. Using a container based on this image, you can develop http://www.alpinelinux.org/[Alpine Linux] https://wiki.alpinelinux.org/wiki/Developer_Documentation#Building_from_source_and_creating_packages[Aports packages] easily from your existing, non-Alpine Linux workstation.
+You can use this project to build a Docker container image. Using a container based on this image, you can develop http://www.alpinelinux.org/[Alpine Linux] https://wiki.alpinelinux.org/wiki/Developer_Documentation#Building_from_source_and_creating_packages[Aports packages] easily from your existing, non-Alpine Linux workstation. This image is not meant for direct use. Please see https://github.com/sanmai-NL/composed__alpinesdk[the relevant Docker Compose project to use this image].
 
 Please issue all of the following shell statements from within the root directory of this repository.
 
@@ -53,9 +53,9 @@ It needs to match `alpine-developer`’s user ID, the user to use inside the con
 . `REGISTRY`: the Docker registry that the built image will be tagged as belonging to.
 The default is normally okay.
 
-NOTE: In the following, substitute `fish` with the name of a shell executable, e.g. `bash`.
-
 === To run the build
+
+NOTE: In the following, substitute `fish` with the name of a shell executable, e.g. `bash`.
 
 [source,sh]
 ----
